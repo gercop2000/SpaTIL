@@ -1,11 +1,11 @@
 clear;clc;
 
-I=imread('image.png');
-M=imread('nuclei_mask.png');
+I=imread('image_1.png');
+M=imread('nuclei_mask_1.png');
 
 [nucleiCentroids,nucFeatures] = getNucLocalFeatures(I,M);
 
-model=load('D:\German\Dropbox\histopat\app\tils_prognosis\lymph_detection_model\models\lymp_svm_matlab_wsi.mat');
+model=load('example_data\lymp_svm_matlab_40x.mat');
 isLymphocyte = (predict(model.model,nucFeatures(:,1:7)))==1;
 
 coords={nucleiCentroids(isLymphocyte,:),nucleiCentroids(~isLymphocyte,:),};
